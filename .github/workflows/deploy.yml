@@ -1,0 +1,22 @@
+name: Deploy
+
+on: [push, pull_request]
+
+jobs:
+  start:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Push scripts
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_user_name: CI Bot
+          commit_message: "update: add from `main`"
+          branch: deployment
