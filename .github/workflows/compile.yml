@@ -23,6 +23,13 @@ jobs:
       - name: Remove previous build
         run: sudo rm -r -f /scripts/build/
 
+      - name: Push removing
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_user_name: CI Bot
+          commit_message: "chore(scripts): remove build"
+          branch: deployment
+
       - name: Compile
         run: tsc
 
@@ -30,5 +37,5 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_user_name: CI Bot
-          commit_message: "update(scripts): compile"
+          commit_message: "chore(scripts): add build"
           branch: deployment
