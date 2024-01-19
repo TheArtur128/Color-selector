@@ -14,7 +14,7 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
 
-      - name: Push scripts
+      - name: Push updates
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_user_name: CI Bot
