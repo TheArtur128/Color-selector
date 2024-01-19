@@ -21,7 +21,7 @@ jobs:
         run: npm install typescript -g
 
       - name: Remove previous build
-        run: sudo rm -r -f /scripts/build/
+        run: sudo rm -r -f scripts/build
 
       - name: Push removing
         uses: stefanzweifel/git-auto-commit-action@v5
@@ -30,12 +30,12 @@ jobs:
           commit_message: "chore(scripts): remove build"
           branch: deployment
 
-      - name: Compile
-        run: tsc
+      # - name: Compile
+      #   run: tsc
 
-      - name: Push build
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_user_name: CI Bot
-          commit_message: "chore(scripts): add build"
-          branch: deployment
+      # - name: Push build
+      #   uses: stefanzweifel/git-auto-commit-action@v5
+      #   with:
+      #     commit_user_name: CI Bot
+      #     commit_message: "chore(scripts): add build"
+      #     branch: deployment
