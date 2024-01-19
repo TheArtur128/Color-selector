@@ -24,7 +24,7 @@ jobs:
         run: tsc
 
       - name: Push build
-      uses: stefanzweifel/git-auto-commit-action@v5
-      with:
-        commit_message: "chore(ci): add build"
-        branch: deployment
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(ci): add build"
+          branch: deployment
