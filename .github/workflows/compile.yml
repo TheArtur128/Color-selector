@@ -20,11 +20,15 @@ jobs:
       - name: Install TypeScript
         run: npm install typescript -g
 
+      - name: Remove previous build
+        run: sudo rm -r -f /scripts/build/
+
       - name: Compile
         run: tsc
 
       - name: Push build
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore(ci): add build"
+          commit_user_name: CI Bot
+          commit_message: "update(scripts): compile"
           branch: deployment
