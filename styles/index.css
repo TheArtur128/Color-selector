@@ -66,6 +66,11 @@ button:active {
   border-color: #fcdc60;
 }
 
+#root {
+  display: grid;
+  place-items: center;
+}
+
 .block {
   background-color: #2d2c2e;
   color: #fffff5;
@@ -76,11 +81,12 @@ button:active {
   text-align: center;
 }
 
-#selection-result {
-  height: 98px;
+#color-panel {
+  margin-bottom: 4px;
 }
 
 #selection-result {
+  height: 98px;
   display: flex;
 }
 
