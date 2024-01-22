@@ -1,26 +1,9 @@
 import { Vector, combine, map } from "./vectors";
-import { RGBColor } from "./colors"
+import { RGBColor, HEXColor, hexColorOf } from "./colors"
 
-function drawColorPanel(
-    canvas: HTMLCanvasElement,
-    colorIn: (position: Vector) => string,
-): void {
-    let context = canvas.getContext("2d");
+export type ColorSpace = Map<Vector, RGBColor>
 
-    if (context == null)
-        return;
-
-    for (let y = 0; y <= canvas.height; y++) {
-        for (let x = 0; x <= canvas.width; x++) {
-            context.fillStyle = colorIn({x: x , y: y});
-            context.fillRect(x, y, 1, 1);
-        }
-    }
-}
-
-type ColorSpace = Map<Vector, RGBColor>
-
-function colorCircleOf(
+export function colorCircleOf(
     lengthFactor: number = 1,
     center: Vector = {x: 0, y: 0},
 ): ColorSpace {
