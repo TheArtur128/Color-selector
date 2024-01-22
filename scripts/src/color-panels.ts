@@ -18,13 +18,13 @@ function drawColorPanel(
     }
 }
 
-type ColorSpace = Record<Vector, RGBColor>
+type ColorSpace = Map<Vector, RGBColor>
 
 function colorCircleOf(
     lengthFactor: number = 1,
     center: Vector = {x: 0, y: 0},
 ): ColorSpace {
-    const colorCircle: ColorSpace = {};
+    const colorCircle: ColorSpace = new Map();
 
     const redUnit: Vector = {x: 0, y: lengthFactor};
     const greenUnit: Vector = {
@@ -48,7 +48,7 @@ function colorCircleOf(
                     map(blueUnit, v => v * blue),
                 ].reduce((a, b) => combine(a, b, (x, y) => x + y));
 
-                colorCircle[position] = new RGBColor(red, green, blue);
+                colorCircle.set(position, new RGBColor(red, green, blue));
             }
         }
     }
