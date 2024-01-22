@@ -119,6 +119,19 @@ button:active {
   margin-left: -1.59px;
 }
 
+.copy-buttons {
+  position: absolute;
+  margin-top: 2px;
+}
+
+#hex-copy-button {
+  margin-left: -2px;
+}
+
+#rgb-copy-button {
+  margin-left: 4px;
+}
+
 #selected-color {
   background-color: #FFFFFF;
   width: 92px;

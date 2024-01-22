@@ -12,12 +12,12 @@
             <canvas id="color-panel" class="block" width="295" height="295"></canvas>
             <div id="selection-result">
                 <div id="attributes" class="block">
-                    <p id="hex-field">HEX = <span id="hex-sign">#</span></span> <input type="text" id="hex-attribute" value="FFFFFF" maxlength="6"></p>
-                    <p id="rgb-field">RGB = <input type="number" id="red-attribute" class="rgb-attribute" value="255" min="0", max="255"><span class="rgb-attribute-delimiter">,</span> <input type="number" id="green-attribute" class="rgb-attribute" value="255" min="0", max="255"><span class="rgb-attribute-delimiter">,</span> <input type="number" id="blue-attribute" class="rgb-attribute" value="255" min="0", max="255"></p>
+                    <p id="hex-field">HEX = <span id="hex-sign">#</span></span> <input type="text" id="hex-attribute" value="FFFFFF" maxlength="6"><img id="hex-copy-button" class="copy-buttons" src="images/copy.png" width="15" height="15"></p>
+                    <p id="rgb-field">RGB = <input type="number" id="red-attribute" class="rgb-attribute" value="255" min="0", max="255"><span class="rgb-attribute-delimiter">,</span> <input type="number" id="green-attribute" class="rgb-attribute" value="255" min="0", max="255"><span class="rgb-attribute-delimiter">,</span> <input type="number" id="blue-attribute" class="rgb-attribute" value="255" min="0", max="255"><img id="rgb-copy-button" class="copy-buttons" src="images/copy.png" width="15" height="15"></p>
                 </div>
                 <div id="selected-color" class="block"></div>
             </div>
-            <script type="text/javascript" src="scripts/build/index.js"></script>
+            <script type="module" type="text/javascript" src="scripts/build/index.js"></script>
         </div>
     </body>
 </html>

@@ -38,3 +38,12 @@ export function colorCircleOf(
 
     return colorCircle;
 }
+
+export type ColorSelector = (position: Vector) => HEXColor;
+
+export function colorSelectorFrom(colorSpace: ColorSpace, defaultColor = "#ffffff"): ColorSelector {
+    return (position: Vector) => {
+        let rgbColor = colorSpace.get(position);
+        return rgbColor !== undefined ? hexColorOf(rgbColor) : defaultColor;
+    };
+}
