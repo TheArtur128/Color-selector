@@ -1,6 +1,22 @@
 {
-  "dependencies": {
-    "@types/assert": "^1.5.10",
-    "assert": "^2.1.0"
-  }
+  "name": "color-selector",
+  "version": "1.0.0",
+  "description": "Web application for color selection",
+  "main": "scripts\\src\\index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheArtur128/Color-selector.git"
+  },
+  "keywords": [
+    "color-selection-app"
+  ],
+  "author": "Arthur",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/TheArtur128/Color-selector/issues"
+  },
+  "homepage": "https://github.com/TheArtur128/Color-selector#readme"
 }
