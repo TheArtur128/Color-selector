@@ -1,13 +1,30 @@
 import { Vector, combine, map } from "./vectors.js";
-import { RGBColor, HEXColor, hexColorOf } from "./colors.js"
+import { HEXColor, RGBColor, hexColorOf } from "./colors.js"
 
-export type ColorSpace = Map<Vector, RGBColor>
+export type ColorSpace<Color> = Map<Vector, Color>
 
-export function colorCircleOf(
+export type ColorSpaceMetric<Color> = {
+    redMax: number,
+    greenMax: number,
+    blueMax: number,
+    colorOf: (red: number, green: number, blue: number) => Color,
+}
+
+export const rgbColorSpaceMetric: ColorSpaceMetric<RGBColor> = {
+    redMax: 255,
+    greenMax: 255,
+    blueMax: 255,
+    colorOf: (red: number, green: number, blue: number) => {
+        return new RGBColor(red, green, blue);
+    }
+}
+
+export function colorCircleOf<Color>(
+    metric: ColorSpaceMetric<Color>,
     lengthFactor: number = 1,
     center: Vector = {x: 0, y: 0},
-): ColorSpace {
-    const colorCircle: ColorSpace = new Map();
+): ColorSpace<Color> {
+    const colorCircle: ColorSpace<Color> = new Map();
 
     const redUnit: Vector = {x: 0, y: lengthFactor};
     const greenUnit: Vector = {
@@ -21,9 +38,9 @@ export function colorCircleOf(
 
     let position: Vector;
 
-    for (let red = 0; red <= 255; red++) {
-        for (let green = 0; green <= 255; green++) {
-            for (let blue = 0; blue <= 255; blue++) {
+    for (let red = 0; red <= metric.redMax; red++) {
+        for (let green = 0; green <= metric.greenMax; green++) {
+            for (let blue = 0; blue <= metric.blueMax; blue++) {
                 position = [
                     center,
                     map(redUnit, v => v * red),
@@ -31,7 +48,7 @@ export function colorCircleOf(
                     map(blueUnit, v => v * blue),
                 ].reduce((a, b) => combine(a, b, (v1, v2) => v1 + v2));
 
-                colorCircle.set(position, new RGBColor(red, green, blue));
+                colorCircle.set(position, metric.colorOf(red, green, blue));
             }
         }
     }
@@ -39,11 +56,8 @@ export function colorCircleOf(
     return colorCircle;
 }
 
-export type ColorSelector = (position: Vector) => HEXColor;
+export type ColorSelector<Color> = (position: Vector) => Color | undefined;
 
-export function colorSelectorFrom(colorSpace: ColorSpace, defaultColor = "#ffffff"): ColorSelector {
-    return (position: Vector) => {
-        let rgbColor = colorSpace.get(position);
-        return rgbColor !== undefined ? hexColorOf(rgbColor) : defaultColor;
-    };
+export function colorSelectorOf<Color>(colorSpace: ColorSpace<Color>): ColorSelector<Color> {
+    return colorSpace.get;
 }

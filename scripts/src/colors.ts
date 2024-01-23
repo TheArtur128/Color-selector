@@ -1,3 +1,5 @@
+export type CSSColor = string;
+
 type RGBColorParameter = number;
 
 export class RGBColor {
@@ -23,7 +25,7 @@ export class RGBColor {
     }
 }
 
-export type HEXColor = string;
+export type HEXColor = CSSColor;
 
 export function hexColorOf(color: RGBColor): HEXColor {
     let red = color.red.toString(16);

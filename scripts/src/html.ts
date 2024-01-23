@@ -1,4 +1,5 @@
 import { ColorSelector } from "./color-spaces.js";
+import { CSSColor } from "./colors.js";
 
 export function constructRecoveringButton(
     buttonElement: HTMLImageElement,
@@ -34,7 +35,8 @@ export function constructRecoveringButton(
 
 export function drawColorPanel(
     canvas: HTMLCanvasElement,
-    colorIn: ColorSelector,
+    colorIn: ColorSelector<CSSColor>,
+    defaultColor: CSSColor = "black",
 ): void {
     let context = canvas.getContext("2d");
 
@@ -43,7 +45,9 @@ export function drawColorPanel(
 
     for (let y = 0; y <= canvas.height; y++) {
         for (let x = 0; x <= canvas.width; x++) {
-            context.fillStyle = colorIn({x: x , y: y});
+            let color = colorIn({x: x , y: y});
+
+            context.fillStyle = color === undefined ? defaultColor : color;
             context.fillRect(x, y, 1, 1);
         }
     }
