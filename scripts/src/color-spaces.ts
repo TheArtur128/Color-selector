@@ -1,5 +1,5 @@
-import { Vector, combine, map } from "./vectors";
-import { RGBColor, HEXColor, hexColorOf } from "./colors"
+import { Vector, combine, map } from "./vectors.js";
+import { RGBColor, HEXColor, hexColorOf } from "./colors.js"
 
 export type ColorSpace = Map<Vector, RGBColor>
 
@@ -29,7 +29,7 @@ export function colorCircleOf(
                     map(redUnit, v => v * red),
                     map(greenUnit, v => v * green),
                     map(blueUnit, v => v * blue),
-                ].reduce((a, b) => combine(a, b, (x, y) => x + y));
+                ].reduce((a, b) => combine(a, b, (v1, v2) => v1 + v2));
 
                 colorCircle.set(position, new RGBColor(red, green, blue));
             }

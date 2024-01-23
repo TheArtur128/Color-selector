@@ -1,5 +1,5 @@
-import { colorSelectorFrom, colorCircleOf } from "./color-spaces";
-import { drawColorPanel, constructRecoveringButton } from "./html";
+import { colorSelectorFrom, colorCircleOf } from "./color-spaces.js";
+import { drawColorPanel, constructRecoveringButton } from "./html.js";
 
 function copyHEXColor(): boolean {
     const hexColorElement = document.querySelector("#hex-attribute");
@@ -40,7 +40,7 @@ if (hexCopyButtonElement instanceof HTMLImageElement) {
     );
 }
 
-let colorPanelElement = document.querySelector("#color-panel");
-if (colorPanelElement instanceof HTMLCanvasElement) {
-    drawColorPanel(colorPanelElement, colorSelectorFrom(colorCircleOf()));
-}
+// let colorPanelElement = document.querySelector("#color-panel");
+// if (colorPanelElement instanceof HTMLCanvasElement) {
+//     drawColorPanel(colorPanelElement, colorSelectorFrom(colorCircleOf()));
+// }

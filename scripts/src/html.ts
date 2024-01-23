@@ -1,4 +1,4 @@
-import { ColorSelector } from "./color-spaces";
+import { ColorSelector } from "./color-spaces.js";
 
 export function constructRecoveringButton(
     buttonElement: HTMLImageElement,
