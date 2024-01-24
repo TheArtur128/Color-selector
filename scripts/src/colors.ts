@@ -1,47 +1,30 @@
+import { Vector3 } from "./vectors";
+
 export type CSSColor = string;
-
-type RGBColorParameter = number;
-
-export class RGBColor {
-    constructor(
-        readonly red: RGBColorParameter,
-        readonly green: RGBColorParameter,
-        readonly blue: RGBColorParameter,
-    ) {
-        this.red = RGBColor._validated(red);
-        this.green = RGBColor._validated(green);
-        this.blue = RGBColor._validated(blue);
-    }
-
-    private static _validated(parameter: RGBColorParameter): RGBColorParameter {
-        if (!RGBColor.isParameter(parameter))
-            throw new Error("Color parameter must be between 0 and 1");
-
-        return parameter;
-    }
-
-    static isParameter(parameter: RGBColorParameter): parameter is RGBColorParameter {
-        return parameter >= 0 && parameter <= 255;
-    }
-}
-
 export type HEXColor = CSSColor;
 
-export function hexColorOf(color: RGBColor): HEXColor {
-    let red = color.red.toString(16);
-    let green = color.green.toString(16);
-    let blue = color.blue.toString(16);
+export function hexColorOf(position: Vector3): HEXColor | undefined {
+    if (!_isHexValue(position.x) || !_isHexValue(position.y) || !_isHexValue(position.z))
+        return;
 
-    return red + green + blue;
+    let red = position.x.toString(16);
+    let green = position.y.toString(16);
+    let blue = position.z.toString(16);
+
+    return `#${red + green + blue}`;
 }
 
-export function rgbColorOf(color: HEXColor): RGBColor | undefined {
-    let red = parseInt(color.slice(0, 3), 16);
-    let green = parseInt(color.slice(2, 4), 16);
-    let blue = parseInt(color.slice(4, 6), 16);
+export function vectorOf(color: HEXColor): Vector3 | undefined {
+    let x = parseInt(color.slice(0, 3), 16);
+    let y = parseInt(color.slice(2, 4), 16);
+    let z = parseInt(color.slice(4, 6), 16);
 
-    if (NaN in [red, green, blue])
+    if (NaN in [x, y, z])
         return undefined;
 
-    return new RGBColor(red, green, blue);
+    return {x: x, y: y, z: z};
+}
+
+function _isHexValue(value: number): boolean {
+    return value >= 0 && value <= 255;
 }
