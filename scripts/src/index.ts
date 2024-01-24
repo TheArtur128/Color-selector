@@ -29,18 +29,21 @@ function copyRGBColor(): boolean {
     return true;
 }
 
-let hexCopyButtonElement = document.querySelector("#hex-copy-button");
-if (hexCopyButtonElement instanceof HTMLImageElement) {
-    constructRecoveringButton(
-        hexCopyButtonElement,
-        "/images/done.png",
-        "/images/failed.png",
-        3,
-        copyHEXColor,
-    );
+function constructCopyButton(querySelection: string, copy: () => boolean) {
+    let copyButtonElement = document.querySelector(querySelection);
+    if (copyButtonElement instanceof HTMLImageElement) {
+        constructRecoveringButton(
+            copyButtonElement,
+            "/images/done.png",
+            "/images/failed.png",
+            3,
+            copy,
+        );
+    }
 }
 
 // let colorPanelElement = document.querySelector("#color-panel");
 // if (colorPanelElement instanceof HTMLCanvasElement) {
 //     drawColorPanel(colorPanelElement, colorSelectorFrom(colorCircleOf()));
 // }
+constructCopyButton("#hex-copy-button", copyHEXColor);
