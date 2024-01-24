@@ -47,3 +47,4 @@ function constructCopyButton(querySelection: string, copy: () => boolean) {
 //     drawColorPanel(colorPanelElement, colorSelectorFrom(colorCircleOf()));
 // }
 constructCopyButton("#hex-copy-button", copyHEXColor);
+constructCopyButton("#rgb-copy-button", copyRGBColor);
