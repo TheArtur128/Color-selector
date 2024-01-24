@@ -27,8 +27,8 @@ jobs:
       - name: Install TypeScript
         run: npm install typescript -g
 
-      - name: Compile
-        run: tsc
+      - name: Build
+        run: npm run build
 
       - name: Install Pages
         uses: actions/configure-pages@v4
