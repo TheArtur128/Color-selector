@@ -1,5 +1,5 @@
 import { HEXColor, hexColorOf, vectorOf, inHEXValueRange } from "./colors.js";
-import { RainbowVertex } from "./renders.js";
+import { RainbowVertex } from "./ui.js";
 import { offsetOf } from "./prisms.js"
 import { Vector3 } from "./vectors";
 

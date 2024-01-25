@@ -1,6 +1,5 @@
 import { colorOf } from "./color-selectors.js";
-import { constructCopyButton } from "./html.js";
-import { drawColorPanel } from "./renders.js";
+import { constructCopyButton, drawColorPanel } from "./ui.js";
 
 constructCopyButton("#hex-copy-button", () => {
     const hexColorElement = document.querySelector("#hex-attribute");
