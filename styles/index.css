@@ -75,14 +75,19 @@ button:active {
   background-color: #2d2c2e;
   color: #fffff5;
   position: relative;
-  padding-top: 2px;
   border: solid 2px #7672f7;
   border-radius: 5px;
   text-align: center;
 }
 
-#color-panel {
+#color-selection {
   margin-bottom: 4px;
+  width: 295px;
+  height: 295px;
+}
+
+#color-panel {
+  border-bottom: 2px solid #7672f7;
 }
 
 #selection-result {
