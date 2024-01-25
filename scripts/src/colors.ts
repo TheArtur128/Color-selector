@@ -1,4 +1,4 @@
-import { Vector3 } from "./vectors";
+import { Vector3 } from "./vectors.js";
 
 export type CSSColor = string;
 export type HEXColor = CSSColor;
