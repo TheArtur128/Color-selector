@@ -1,3 +1,4 @@
+import { colorOf } from "./color-selectors.js";
 import { constructCopyButton } from "./html.js";
 import { drawColorPanel } from "./renders.js";
 
@@ -31,5 +32,5 @@ constructCopyButton("#rgb-copy-button", () => {
 
 let colorPanelElement = document.querySelector("#color-panel");
 if (colorPanelElement instanceof HTMLCanvasElement) {
-    drawColorPanel(colorPanelElement);
+    drawColorPanel(colorPanelElement, colorOf);
 }
