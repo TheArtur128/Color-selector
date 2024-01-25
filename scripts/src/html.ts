@@ -29,3 +29,20 @@ export function constructRecoveringButton(
         setTimeout(restoreAbilities, lockSeconds * 1000);
     }
 }
+
+export function constructCopyButton(querySelection: string, copy: () => boolean): boolean {
+    let copyButtonElement = document.querySelector(querySelection);
+
+    if (!(copyButtonElement instanceof HTMLImageElement))
+        return false;
+
+    constructRecoveringButton(
+        copyButtonElement,
+        "/images/done.png",
+        "/images/failed.png",
+        3,
+        copy,
+    );
+
+    return true;
+}
