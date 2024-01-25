@@ -27,9 +27,9 @@ export function inHEXValueRange(value: number): number {
 }
 
 export function vectorOf(color: HEXColor): Vector3 | undefined {
-    let x = parseInt(color.slice(0, 3), 16);
-    let y = parseInt(color.slice(2, 4), 16);
-    let z = parseInt(color.slice(4, 6), 16);
+    let x = parseInt(color.slice(1, 3), 16);
+    let y = parseInt(color.slice(3, 5), 16);
+    let z = parseInt(color.slice(5, 8), 16);
 
     if (NaN in [x, y, z])
         return undefined;
