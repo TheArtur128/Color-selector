@@ -3,15 +3,27 @@ import { Vector3 } from "./vectors.js";
 export type CSSColor = string;
 export type HEXColor = CSSColor;
 
-export function hexColorOf(position: Vector3): HEXColor | undefined {
-    if (!_isHexValue(position.x) || !_isHexValue(position.y) || !_isHexValue(position.z))
-        return;
-
-    let red = position.x.toString(16);
-    let green = position.y.toString(16);
-    let blue = position.z.toString(16);
+export function hexColorOf(position: Vector3): HEXColor {
+    let red = _HEXColorValueOf(position.x);
+    let green = _HEXColorValueOf(position.y);
+    let blue = _HEXColorValueOf(position.z);
 
     return `#${red + green + blue}`;
+}
+
+function _HEXColorValueOf(value: number): string {
+    let hexColorValue = inHEXValueRange(value).toString(16);
+
+    return hexColorValue.length == 1 ? '0' + hexColorValue : hexColorValue;
+}
+
+export function inHEXValueRange(value: number): number {
+    if (value < 0)
+        return 0;
+    else if (value > 255)
+        return 255;
+    else
+        return value;
 }
 
 export function vectorOf(color: HEXColor): Vector3 | undefined {
@@ -23,8 +35,4 @@ export function vectorOf(color: HEXColor): Vector3 | undefined {
         return undefined;
 
     return {x: x, y: y, z: z};
-}
-
-function _isHexValue(value: number): boolean {
-    return value >= 0 && value <= 255;
 }
