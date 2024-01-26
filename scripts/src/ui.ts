@@ -33,23 +33,6 @@ export function constructRecoveringButton(
     }
 }
 
-export function constructCopyButton(querySelection: string, copy: () => boolean): boolean {
-    let copyButtonElement = document.querySelector(querySelection);
-
-    if (!(copyButtonElement instanceof HTMLImageElement))
-        return false;
-
-    constructRecoveringButton(
-        copyButtonElement,
-        "/images/done.png",
-        "/images/failed.png",
-        3,
-        copy,
-    );
-
-    return true;
-}
-
 export type RainbowVertex = (
     "#ff0000" | "#ffff00" | "#00ff00" | "#00ffff" | "#0000ff" | "#ff00ff" | "#ff0000"
 );

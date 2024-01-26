@@ -1,35 +1,34 @@
 import { colorOf } from "./color-selectors.js";
-import { constructCopyButton, drawColorPanel } from "./ui.js";
+import { constructRecoveringButton, drawColorPanel } from "./ui.js";
 
-constructCopyButton("#hex-copy-button", () => {
-    const hexColorElement = document.querySelector("#hex-attribute");
+constructRecoveringButton(
+    <HTMLImageElement>document.querySelector("#hex-copy-button"),
+    "/images/done.png",
+    "/images/failed.png",
+    3,
+    () => {
+        const hexColorElement = <HTMLInputElement>document.querySelector("#hex-attribute");
+        navigator.clipboard.writeText(`#${hexColorElement.value}`);
 
-    if (!(hexColorElement instanceof HTMLInputElement))
-        return false;
+        return true;
+    },
+);
 
-    navigator.clipboard.writeText(`#${hexColorElement.value}`)
-    return true;
-});
+constructRecoveringButton(
+    <HTMLImageElement>document.querySelector("#rgb-copy-button"),
+    "/images/done.png",
+    "/images/failed.png",
+    3,
+    () => {
+        const redColor = <HTMLInputElement>document.querySelector("#red-attribute");
+        const greenColor = <HTMLInputElement>document.querySelector("#green-attribute");
+        const blueColor = <HTMLInputElement>document.querySelector("#blue-attribute");
 
-constructCopyButton("#rgb-copy-button", () => {
-    const redColor = document.querySelector("#red-attribute");
-    const greenColor = document.querySelector("#green-attribute");
-    const blueColor = document.querySelector("#blue-attribute");
+        const colorText = `${redColor.value}, ${greenColor.value}, ${blueColor.value}`;
+        navigator.clipboard.writeText(colorText);
 
-    if (!(
-        redColor instanceof HTMLInputElement
-        && greenColor instanceof HTMLInputElement
-        && blueColor instanceof HTMLInputElement
-    ))
-        return false;
+        return true;
+    },
+);
 
-    const colorText = `${redColor.value}, ${greenColor.value}, ${blueColor.value}`;
-    navigator.clipboard.writeText(colorText);
-
-    return true;
-});
-
-let colorPanelElement = document.querySelector("#color-panel");
-if (colorPanelElement instanceof HTMLCanvasElement) {
-    drawColorPanel(colorPanelElement, colorOf);
-}
+drawColorPanel(<HTMLCanvasElement>document.querySelector("#color-panel"), colorOf);
