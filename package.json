@@ -4,7 +4,7 @@
   "description": "Web application for color selection",
   "main": "scripts\\src\\index.ts",
   "scripts": {
-    "start": "http-server",
+    "start": "tsc && http-server -o",
     "build": "tsc"
   },
   "repository": {
