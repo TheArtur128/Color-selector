@@ -3,7 +3,7 @@
 body {
   font-family: "Nunito";
   font-weight: 300;
-  background-color: #ebfcf4;
+  background-color: #ebf2fc;
 }
 
 ::selection {
@@ -69,6 +69,7 @@ button:active {
 #root {
   display: grid;
   place-items: center;
+  margin-top: 23px;
 }
 
 .block {
