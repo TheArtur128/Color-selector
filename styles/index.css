@@ -90,6 +90,40 @@ button:active {
   border-bottom: 2px solid #7672f7;
 }
 
+#color-panel-configuration {
+  display: flex;
+  align-items: center;
+}
+
+#darkening-factor-selector {
+  -webkit-appearance: none;
+  overflow: hidden;
+  margin-left: 10px;
+  width: 188px;
+  height: 16px;
+  border-radius: 8px;
+  background-color: #dbdaf2;
+}    
+
+#darkening-factor-selector::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  cursor: pointer;
+  width: 0px;
+  height: 16px;
+  box-shadow: -188px 0 0 188px #7672f7;
+}
+
+#darkening-factor-view {
+  position: absolute;
+  right: -1px;
+}
+
+#darkening-factor-copy-button {
+  position: relative;
+  right: 26px;
+  top: 1px;
+}
+
 #selection-result {
   height: 98px;
   display: flex;
@@ -116,7 +150,7 @@ button:active {
   font-size: 15px;
 }
 
-.rgb-attribute {
+.rgb-attribute, #darkening-factor-mirror {
   width: 25.3px;
 }
 

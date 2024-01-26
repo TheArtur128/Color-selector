@@ -11,6 +11,10 @@
         <div id="root">
             <div id="color-selection" class="block">
                 <canvas id="color-panel" width="295" height="260"></canvas>
+                <div id="color-panel-configuration">
+                    <input id="darkening-factor-selector" type="range" min="0" max="255" value="0">
+                    <span id="darkening-factor-view"><input id="darkening-factor" type="number" min="0" max="255" value="0"><img id="darkening-factor-copy-button" class="copy-buttons" src="images/copy.png" width="15" height="15"></span>
+                </div>
             </div>
             <div id="selection-result">
                 <div id="attributes" class="block">
