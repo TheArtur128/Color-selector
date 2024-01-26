@@ -3,8 +3,8 @@ import { constructRecoveringButton, drawColorPanel } from "./ui.js";
 
 constructRecoveringButton(
     <HTMLImageElement>document.querySelector("#hex-copy-button"),
-    "/images/done.png",
-    "/images/failed.png",
+    "./images/done.png",
+    "./images/failed.png",
     3,
     () => {
         const hexColorElement = <HTMLInputElement>document.querySelector("#hex-attribute");
@@ -16,8 +16,8 @@ constructRecoveringButton(
 
 constructRecoveringButton(
     <HTMLImageElement>document.querySelector("#rgb-copy-button"),
-    "/images/done.png",
-    "/images/failed.png",
+    "./images/done.png",
+    "./images/failed.png",
     3,
     () => {
         const redColor = <HTMLInputElement>document.querySelector("#red-attribute");
