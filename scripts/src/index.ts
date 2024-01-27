@@ -2,6 +2,19 @@ import { colorOf } from "./color-selectors.js";
 import { constructRecoveringButton, drawColorPanel } from "./ui.js";
 
 constructRecoveringButton(
+    <HTMLImageElement>document.querySelector("#darkening-factor-copy-button"),
+    "./images/done.png",
+    "./images/failed.png",
+    3,
+    () => {
+        const darkeningFactor = <HTMLInputElement>document.querySelector("#darkening-factor");
+        navigator.clipboard.writeText(darkeningFactor.value);
+
+        return true;
+    },
+);
+
+constructRecoveringButton(
     <HTMLImageElement>document.querySelector("#hex-copy-button"),
     "./images/done.png",
     "./images/failed.png",
