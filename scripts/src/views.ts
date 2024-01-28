@@ -77,3 +77,19 @@ export function selectedColorViewOf(
 ): SubscriberOn<HEXColor, void> {
     return (color: HEXColor) => selectedColorElement.style.backgroundColor = color;
 }
+
+export function darkeningFactorViewOf(
+    updateDarkeningFactorSubscription: UpdateSubscription<number>,
+    element: HTMLInputElement,
+): SubscriberOn<number, void> {
+    const setValue = (factor: number) => {
+        element.value = inHEXValueRange(factor).toString();
+    }
+
+    _updatingEventFor(element, () => {
+        element.value = numeric(element.value, inHEXValueRange);
+        updateDarkeningFactorSubscription(parseInt(element.value), [setValue]);
+    });
+
+    return setValue;
+}

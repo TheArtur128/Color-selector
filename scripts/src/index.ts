@@ -63,5 +63,15 @@ subscriptionFor(
 
     _ => selectedColorViewOf(<HTMLInputElement>document.querySelector("#selected-color")),
 );
+
+subscriptionFor(
+    (update: UpdateSubscription<number>) => darkeningFactorViewOf(
+        update,
+        <HTMLInputElement>document.querySelector("#darkening-factor-selector"),
+    ),
+
+    (update: UpdateSubscription<number>) => darkeningFactorViewOf(
+        update,
+        <HTMLInputElement>document.querySelector("#darkening-factor"),
     ),
 );
