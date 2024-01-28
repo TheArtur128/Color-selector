@@ -63,7 +63,7 @@ function hexColorViewOf(
         if (element.value.length > 6)
             element.value = element.value.slice(0, 7);
 
-        if (element.value.length in [3, 6])
+        if ([3, 6].includes(element.value.length))
             updateColorSubscription(`#${element.value}`, [setValue]);
     });
 

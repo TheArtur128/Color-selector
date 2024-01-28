@@ -44,8 +44,8 @@ export function vectorOf(color: HEXColor): Vector3 | undefined {
     else
         return;
 
-    if (NaN in [x, y, z])
-        return undefined;
+    if ([x, y, z].includes(NaN))
+        return;
 
     return {x: x, y: y, z: z};
 }
