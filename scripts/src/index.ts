@@ -47,8 +47,6 @@ constructRecoveringButton(
     },
 );
 
-drawColorPanel(<HTMLCanvasElement>document.querySelector("#color-panel"), colorOf);
-
 subscriptionFor(
     (update: UpdateSubscription<HEXColor>) => hexColorViewOf(
         update, <HTMLInputElement>document.querySelector("#hex-attribute")
@@ -75,3 +73,5 @@ subscriptionFor(
         <HTMLInputElement>document.querySelector("#darkening-factor"),
     ),
 );
+
+drawColorPanel(<HTMLCanvasElement>document.querySelector("#color-panel"), colorOf);
