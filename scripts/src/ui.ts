@@ -1,5 +1,4 @@
 import { CSSColor } from "./colors.js";
-import { Vector3 } from "./vectors.js";
 
 export function constructRecoveringButton(
     buttonElement: HTMLImageElement,
