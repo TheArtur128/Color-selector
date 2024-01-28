@@ -9,7 +9,7 @@
     </head>
     <body>
         <div id="root">
-            <div id="color-selection" class="block">
+            <div id="color-selection" class="blocks">
                 <canvas id="color-panel" width="295" height="260"></canvas>
                 <div id="color-panel-configuration">
                     <input id="darkening-factor-selector" type="range" min="0" max="255" value="0">
@@ -17,11 +17,11 @@
                 </div>
             </div>
             <div id="selection-result">
-                <div id="attributes" class="block">
+                <div id="attributes" class="blocks">
                     <p id="hex-field">HEX = <span id="hex-sign">#</span></span> <input type="text" id="hex-attribute" value="FFFFFF" maxlength="6"><img id="hex-copy-button" class="copy-buttons" src="images/copy.png" width="15" height="15"></p>
-                    <p id="rgb-field">RGB = <input type="number" id="red-attribute" class="rgb-attribute" value="255" min="0", max="255"><span class="rgb-attribute-delimiter">,</span> <input type="number" id="green-attribute" class="rgb-attribute" value="255" min="0", max="255"><span class="rgb-attribute-delimiter">,</span> <input type="number" id="blue-attribute" class="rgb-attribute" value="255" min="0", max="255"><img id="rgb-copy-button" class="copy-buttons" src="images/copy.png" width="15" height="15"></p>
+                    <p id="rgb-field">RGB = <input type="number" id="red-attribute" class="rgb-attributes" value="255" min="0", max="255"><span class="rgb-attribute-delimiters">,</span> <input type="number" id="green-attribute" class="rgb-attributes" value="255" min="0", max="255"><span class="rgb-attribute-delimiters">,</span> <input type="number" id="blue-attribute" class="rgb-attributes" value="255" min="0", max="255"><img id="rgb-copy-button" class="copy-buttons" src="images/copy.png" width="15" height="15"></p>
                 </div>
-                <div id="selected-color" class="block"></div>
+                <div id="selected-color" class="blocks"></div>
             </div>
             <script type="module" type="text/javascript" src="scripts/build/index.js"></script>
         </div>

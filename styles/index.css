@@ -40,8 +40,9 @@ input:focus, textarea:focus {
 }
 
 input {
-  background-color: #2d2c2e;
+  background-color: #232223;
   color: #7672f7;
+  border-radius: 4px;
   height: 19px;
   font-size: 15px;
 }
@@ -72,7 +73,7 @@ button:active {
   margin-top: 23px;
 }
 
-.block {
+.blocks {
   background-color: #2d2c2e;
   color: #fffff5;
   position: relative;
@@ -116,12 +117,15 @@ button:active {
 
 #darkening-factor-view {
   position: absolute;
-  right: -1px;
+  right: 24px;
+}
+
+#darkening-factor {
+  width: 25px;
 }
 
 #darkening-factor-copy-button {
   position: relative;
-  right: 26px;
   top: 1px;
 }
 
@@ -151,25 +155,14 @@ button:active {
   font-size: 15px;
 }
 
-.rgb-attribute, #darkening-factor-mirror {
+.rgb-attributes, #darkening-factor {
   width: 25.3px;
-}
-
-.rgb-attribute-delimiter {
-  margin-left: -1.59px;
 }
 
 .copy-buttons {
   position: absolute;
   margin-top: 2px;
-}
-
-#hex-copy-button {
-  margin-left: -2px;
-}
-
-#rgb-copy-button {
-  margin-left: 4px;
+  margin-left: 3px;
 }
 
 #selected-color {
