@@ -47,8 +47,8 @@ constructRecoveringButton(
     },
 );
 
-function updatingEventFor(element: HTMLElement, handler: () => any): void {
-    element.addEventListener("keyup", handler);
+function updatingEventFor(element: HTMLInputElement, handler: () => any): void {
+    element.addEventListener("input", handler);
 }
 
 function hexColorViewOf(
