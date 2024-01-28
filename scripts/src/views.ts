@@ -1,5 +1,7 @@
+import { colorOf } from "./color-selectors.js";
 import { HEXColor, hexColorOf, vectorOf } from "./colors.js";
 import { SubscriberOn, UpdateSubscription } from "./subscriptions.js";
+import { drawColorPanel, RainbowVertex } from "./ui.js";
 import { numeric, inHEXValueRange } from "./validators.js";
 
 function _updatingEventFor(element: HTMLInputElement, handler: () => any): void {
@@ -78,6 +80,38 @@ export function selectedColorViewOf(
     return (color: HEXColor) => selectedColorElement.style.backgroundColor = color;
 }
 
+export function selectionColorPanelViewOf(
+    updateColorSubscription: UpdateSubscription<HEXColor>,
+    colorPanelElement: HTMLCanvasElement,
+): boolean {
+    let isSelection = false;
+
+    const context = colorPanelElement.getContext('2d');
+
+    if (context === null)
+        return false;
+
+    colorPanelElement.addEventListener("mousedown", () => isSelection = true);
+    colorPanelElement.addEventListener("mouseup", () => isSelection = false);
+    colorPanelElement.addEventListener("mouseleave", () => isSelection = false);
+
+    colorPanelElement.addEventListener("mousemove", event => {
+        const isXinPanelRange = event.offsetX > 0 && event.offsetX < colorPanelElement.width;
+        const isYinPanelRange = event.offsetY > 0 && event.offsetY < colorPanelElement.height;
+        const isMouseOnPanel = isXinPanelRange && isYinPanelRange;
+
+        if (!isSelection || !isMouseOnPanel)
+            return;
+
+        const pixelData = context.getImageData(event.offsetX, event.offsetY, 1, 1).data;
+        const color = hexColorOf({x: pixelData[0], y: pixelData[1], z: pixelData[2]});
+
+        updateColorSubscription(color, []);
+    });
+
+    return true;
+}
+
 export function darkeningFactorViewOf(
     updateDarkeningFactorSubscription: UpdateSubscription<number>,
     element: HTMLInputElement,
@@ -92,4 +126,23 @@ export function darkeningFactorViewOf(
     });
 
     return setValue;
+}
+
+export function darkeningColorPanelViewOf(
+    colorPanelElement: HTMLCanvasElement,
+    secondsRenderingDelay: number,
+): SubscriberOn<number, void> {
+    let renderingTimeoutID: number;
+
+    return (darkeningFactor: number) => {
+        renderingTimeoutID = setTimeout(
+            () => drawColorPanel(
+                colorPanelElement,
+                (vertex: RainbowVertex, lighteningFactor: number) => colorOf(
+                    vertex, lighteningFactor, darkeningFactor
+                )
+            ),
+            secondsRenderingDelay * 1000,
+        );
+    }
 }

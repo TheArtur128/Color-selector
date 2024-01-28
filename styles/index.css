@@ -92,6 +92,10 @@ button:active {
   border-bottom: 2px solid #7672f7;
 }
 
+#color-panel:active {
+  cursor:crosshair
+}
+
 #color-panel-configuration {
   display: flex;
   align-items: center;

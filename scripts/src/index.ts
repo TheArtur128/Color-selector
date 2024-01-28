@@ -2,7 +2,14 @@ import { colorOf } from "./color-selectors.js";
 import { HEXColor } from "./colors.js";
 import { UpdateSubscription, subscriptionFor } from "./subscriptions.js";
 import { constructRecoveringButton, drawColorPanel } from "./ui.js";
-import { hexColorViewOf, rgbColorViewOf, selectedColorViewOf, darkeningFactorViewOf } from "./views.js";
+import { 
+    hexColorViewOf,
+    rgbColorViewOf,
+    selectedColorViewOf,
+    darkeningFactorViewOf,
+    selectionColorPanelViewOf,
+    darkeningColorPanelViewOf,
+} from "./views.js";
 
 constructRecoveringButton(
     <HTMLImageElement>document.querySelector("#darkening-factor-copy-button"),
@@ -47,7 +54,7 @@ constructRecoveringButton(
     },
 );
 
-subscriptionFor(
+const updateSelectedColor = subscriptionFor(
     (update: UpdateSubscription<HEXColor>) => hexColorViewOf(
         update, <HTMLInputElement>document.querySelector("#hex-attribute")
     ),
@@ -62,6 +69,11 @@ subscriptionFor(
     _ => selectedColorViewOf(<HTMLInputElement>document.querySelector("#selected-color")),
 );
 
+selectionColorPanelViewOf(
+    updateSelectedColor,
+    <HTMLCanvasElement>document.querySelector("#color-panel"),
+);
+
 subscriptionFor(
     (update: UpdateSubscription<number>) => darkeningFactorViewOf(
         update,
@@ -71,6 +83,11 @@ subscriptionFor(
     (update: UpdateSubscription<number>) => darkeningFactorViewOf(
         update,
         <HTMLInputElement>document.querySelector("#darkening-factor"),
+    ),
+
+    _ => darkeningColorPanelViewOf(
+        <HTMLCanvasElement>document.querySelector("#color-panel"),
+        0.005,
     ),
 );
 
