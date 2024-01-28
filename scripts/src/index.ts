@@ -54,7 +54,7 @@ function updatingEventFor(element: HTMLInputElement, handler: () => any): void {
 function hexColorViewOf(
     updateColorSubscription: UpdateSubscription<HEXColor>,
     element: HTMLInputElement,
-): SubscriberOn<HEXColor, void> {
+): SubscriberOn<HEXColor> {
     const setValue = (color: HEXColor) => element.value = color.slice(1);
 
     updatingEventFor(element, () => {
@@ -75,7 +75,7 @@ function rgbColorViewOf(
     redEelement: HTMLInputElement,
     greenEelement: HTMLInputElement,
     blueEelement: HTMLInputElement
-): SubscriberOn<HEXColor, void> {
+): SubscriberOn<HEXColor> {
     const setRGBColor = (color: HEXColor) => {
         const colorVector = vectorOf(color);
 
