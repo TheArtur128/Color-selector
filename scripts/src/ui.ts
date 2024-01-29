@@ -1,4 +1,4 @@
-import { CSSColor } from "./colors.js";
+import { CSSColor, HEXColor, hexColorOf } from "./colors.js";
 
 export function constructRecoveringButton(
     buttonElement: HTMLImageElement,
@@ -64,4 +64,21 @@ export function drawColorPanel(
         context.fillStyle = gradient;
         context.fillRect(0, gradientHeight * lighteningFactor, canvas.width, gradientHeight + 1);
     }
+}
+
+export function pixelColorIn(canvas: HTMLCanvasElement, x: number, y: number): HEXColor | undefined {
+    const context = canvas.getContext("2d");
+
+    if (context === null)
+        return;
+
+    const isXinPanelRange = x > 0 && x < canvas.width;
+    const isYinPanelRange = y > 0 && y < canvas.height;
+    const isMouseOnPanel = isXinPanelRange && isYinPanelRange;
+
+    if (!isMouseOnPanel)
+        return;
+
+    const pixelData = context.getImageData(x, y, 1, 1).data;
+    return hexColorOf({x: pixelData[0], y: pixelData[1], z: pixelData[2]});
 }

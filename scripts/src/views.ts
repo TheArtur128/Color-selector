@@ -1,7 +1,7 @@
 import { colorOf } from "./color-selectors.js";
 import { HEXColor, hexColorOf, vectorOf } from "./colors.js";
 import { SubscriberOn, UpdateSubscription } from "./subscriptions.js";
-import { drawColorPanel, RainbowVertex } from "./ui.js";
+import { drawColorPanel, RainbowVertex, pixelColorIn } from "./ui.js";
 import { numeric, inHEXValueRange } from "./validators.js";
 
 function _updatingEventFor(element: HTMLInputElement, handler: () => any): void {
@@ -86,27 +86,36 @@ export function selectionColorPanelViewOf(
 ): boolean {
     let isSelection = false;
 
-    const context = colorPanelElement.getContext('2d');
+    const activateColorSubscription = (x: number, y: number) => {
+        if (!isSelection)
+            return;
 
-    if (context === null)
-        return false;
+        const pixelColor = pixelColorIn(colorPanelElement, x, y);
+
+        if (pixelColor === undefined)
+            return;
+
+        updateColorSubscription(pixelColor, []);
+    }
 
     colorPanelElement.addEventListener("mousedown", () => isSelection = true);
     colorPanelElement.addEventListener("mouseup", () => isSelection = false);
     colorPanelElement.addEventListener("mouseleave", () => isSelection = false);
-
     colorPanelElement.addEventListener("mousemove", event => {
-        const isXinPanelRange = event.offsetX > 0 && event.offsetX < colorPanelElement.width;
-        const isYinPanelRange = event.offsetY > 0 && event.offsetY < colorPanelElement.height;
-        const isMouseOnPanel = isXinPanelRange && isYinPanelRange;
+        activateColorSubscription(event.offsetX, event.offsetY);
+    });
 
-        if (!isSelection || !isMouseOnPanel)
-            return;
+    colorPanelElement.addEventListener("touchstart", () => isSelection = true);
+    colorPanelElement.addEventListener("touchend", () => isSelection = false);
+    colorPanelElement.addEventListener("touchleave", () => isSelection = false);
+    colorPanelElement.addEventListener("touchcancel", () => isSelection = false);
+    colorPanelElement.addEventListener("touchmove", event => {
+        const boundingRect = colorPanelElement.getBoundingClientRect();
 
-        const pixelData = context.getImageData(event.offsetX, event.offsetY, 1, 1).data;
-        const color = hexColorOf({x: pixelData[0], y: pixelData[1], z: pixelData[2]});
-
-        updateColorSubscription(color, []);
+        activateColorSubscription(
+            event.touches[0].clientX - boundingRect.left,
+            event.touches[0].clientY - boundingRect.top,
+        );
     });
 
     return true;
